@@ -50,9 +50,11 @@ router.get("/", async (req, res) => {
       desc: -1,
     };
     const products = await productModel.paginate(
-      { ...query },
-      { limit, page, ...(sort && { sort: { price: sortManager[sort] } }) }
-    );
+      { ...query },//aqui recibe los filtros (nombre, precio, categoria, etc)
+      {
+        limit, page, ...(sort && { sort: { price: sortManager[sort] } }),
+        customLabels: {docs: "payload"} //el nombre de la respuesta "docs" de paginate se cambia por "payload".
+      });
     res.status(200).json({ ...products, mensaje: "Solicitud exitosa" });
   } catch (error) {
     res.status(500).json({ mensaje: "Error al obtener los productos" });
