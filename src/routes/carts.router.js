@@ -175,12 +175,14 @@ router.delete("/:cid", async (req, res) => {
 });
 
 //eliminar un producto de un carrito:
-router.delete("/:cid/product/:pid", async (req, res) => {
+router.delete("/:cid/products/:pid", async (req, res) => {
   try {
     const { cid, pid } = req.params;
     //buscar el carrito:
     const cartFinded = await cartModel.findById(cid);
-    if (!cartFinded) res.status(404).json({ mensaje: "Carrito no encontrado" });
+    if (!cartFinded) {
+      return res.status(404).json({ mensaje: "Carrito no encontrado" });
+    }
 
     //buscar el producto que se va a eliminar:
     cartFinded.products = cartFinded.products.filter(
@@ -188,7 +190,7 @@ router.delete("/:cid/product/:pid", async (req, res) => {
     );
 
     //actualizar carrito y poblar los datos:
-    const cartUpdated = await cartFinded.save().populate("products.product");
+    const cartUpdated = await cartFinded.save();
 
     res
       .status(200)

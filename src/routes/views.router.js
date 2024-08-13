@@ -44,32 +44,46 @@ router.get("/products", async (req, res) => {
   }
 });
 
-//-------------------------------------------------
-//visualizar un carrito por id:
-/* router.get("/carts/:cid", (req, res) => {
-  const { cid } = req.params;
-    
-  res.render("carts", {
-    cid,
-  });
-}); */
+// GET para mostrar detalles de un producto:
+router.get("/products/:pid", async (req, res) => {
+  const { pid } = req.params;
+  const cid = "66b914f27e23c992fd2f089c"; // se requierepara el boton añadir al carrito
+  try {
+    const productFinded = await productModel.findById(pid).lean();
 
+    if (productFinded) {
+      res.render("productDetail", { productFinded, cid });
+    } else {
+      res.status(404).json({ message: "No se encontro el producto" });
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error al buscar el producto", error: error.message });
+  }
+});
+
+//visualizar un carrito por id:
 router.get("/carts/:cid", async (req, res) => {
   const { cid } = req.params;
+  console.log(cid);
+
   try {
     const cart = await cartModel
       .findById(cid)
-      .populate("products.productId")
+      .populate("products.product")
       .lean();
     if (!cart) {
       return res.status(404).json({ message: "Carrito no encontrado" });
-    }
+    } else {
+      /* console.log(cart); */
 
-    let total = 0;
-    for (const item of cart.products) {
-      total += item.quantity * item.product.price;
+      cart.total = cart.products.reduce((total, item) => {
+        return total + (item.product.price || 0) * item.quantity;
+      }, 0);
+
+      res.render("cartDetail", { cart });
     }
-    res.render("carts", { cart, total });
   } catch (error) {
     res
       .status(500)
@@ -82,16 +96,13 @@ router.get("/carts", async (req, res) => {
   const carts = await cartModel.find().populate("products.product").lean();
   carts.forEach((cart) => {
     cart.total = cart.products.reduce((total, item) => {
-      const productPrice = item.product.price || 0;
-      return total + productPrice * item.quantity;
+      return total + (item.product.price || 0) * item.quantity;
     }, 0);
   });
+
   res.render("carts", { carts });
 });
 
-/* router.get("/products", (req, res) => {
-  res.render("products");
-}); */
 router.get("/realtimeproducts", async (req, res) => {
   const list = await productList.getAllProducts();
 

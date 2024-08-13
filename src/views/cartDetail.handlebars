@@ -1,0 +1,46 @@
+{{! archivo para proyecto final }}
+
+<div class="container m-auto grid grid-cols-3 gap-4 m-4 p-4 w-1/2">
+  <h2 class="font-bold text-l mb-2">ID del Carrito: {{cart._id}}</h2>
+  <ul>
+    {{#each cart.products}}
+    <li class="text-blue-700">
+      <span class="font-bold">Producto:</span>
+      {{product.title}}
+      Precio:
+      {{product.price}}
+      Cantidad:
+      {{quantity}}
+      <button onclick="deleteProd('66b914f27e23c992fd2f089c', '{{product._id}}')">Eliminar</button>
+    </li>
+    {{/each}}
+  </ul>
+  <p><strong>Total a pagar: </strong><span class="font-bold text-green-700">${{cart.total}}</span></p>
+
+</div>
+
+<script>
+  function deleteProd(cid, pid) {
+    if (!cid || !pid) {
+      console.error('CID o PID está vacío',
+        { cid, pid });
+      return;
+    }
+
+    fetch(`/api/carts/${cid}/products/${pid}`,
+      { method: 'DELETE' })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Error: ${response.statusText}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Producto eliminado con éxito: ', data);
+        location.reload();
+      })
+      .catch(error => {
+        console.error('Error al eliminar el producto:', error);
+      });
+  } console.log('Script cargado');
+</script>

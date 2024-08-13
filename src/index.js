@@ -15,7 +15,7 @@ import { productModel } from "./data/models/Product.model.js";
 //configuracion de variables de entorno:
 dotenv.config();
 
-const productManager = new ProductManager(__dirname + "/data/products.json");
+//const productManager = new ProductManager(__dirname + "/data/products.json");
 
 const app = express();
 const PORT = 8080;
@@ -31,11 +31,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 
 app.use("/", viewsRoute);
-//app.use("/carts", cartsRoute);
 app.use("/api/products", productsRoute);
 app.use("/api/carts", cartsRoute);
-//app.use("/home", homeRoute); //----
-//app.use("/real-time-products", realTimeProducts); //----
 
 //escucha del server:
 app.listen(PORT, () => {
