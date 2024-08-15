@@ -1,8 +1,11 @@
+#string de conexion a la BBDD:
 DATABASE_URL= 'mongodb+srv://jcarmen156:7C4YZgI60TxApqmf@coderback1.y27bllh.mongodb.net/?retryWrites=true&w=majority&appName=Coderback1'
 
-#string de conexion a la BBDD
+#rutas principales de la API: 
+http://localhost:8080/api/products
+http://localhost:8080/api/carts
 
-#rutas para visualizacion y operacion:
+#rutas para visualizacion:
 #http://localhost:8080/products  Visualiza todos los productos paginados. Cada producto tiene un enlace al detalle y en la vista de detalle se encuentra el boton "agregar al carrito" (el carrito predefinido para agregar productos es el cid: 66b914f27e23c992fd2f089c)
 #http://localhost:8080/products?sort=asc/desc  Visualiza todos los productos ordenados por precio
 #http://localhost:8080/products?sort=asc/desc&limit=n  Visualiza los productos ordenados por precio (limit=10 es el valor por defecto)

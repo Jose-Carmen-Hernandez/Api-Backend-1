@@ -1,5 +1,5 @@
 {{! archivo para proyecto final }}
-
+{{!-- las llaves triples (triple curlies) permiten utilizar HTML, en este caso espaciadores <br /> --}}
 {{#each carts}}
 <div class="container m-auto grid grid-cols-3 gap-4 m-4 p-4 w-1/2">
   <h2 class="font-bold text-l mb-2">ID del Carrito: {{_id}}</h2>
@@ -7,11 +7,11 @@
     {{#each products}}
     <li class="text-blue-700">
       <span class="font-bold">Producto:</span>
-      {{product.title}}
+      {{{product.title}}} <br />
       Precio:
-      {{product.price}}
+      {{{product.price}}} <br />
       Cantidad:
-      {{quantity}}
+      {{{quantity}}}
     </li>
     {{/each}}
   </ul>

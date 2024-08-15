@@ -1,0 +1,89 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: 0;
+  padding: 15px;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-items: center;
+}
+h1 {
+  width: 100%;
+  text-align: center;
+}
+.realTime {
+  display: flex;
+}
+
+.realtimeproducts {
+  width: 75%;
+  border: 3px solid rgb(53, 10, 155);
+  background-color: #656d87;
+}
+.realtimeproducts h3 {
+  text-align: center;
+  color: #ffff;
+}
+.products-container-rtp {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+.cart {
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid white;
+  color: #ffff;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+}
+.cart p {
+  margin: 0;
+  padding: 0;
+  line-height: 20px;
+}
+
+.events {
+  flex-wrap: wrap;
+  width: 25%;
+  border: 2px solid;
+  border-color: brown;
+  padding: 10px;
+}
+.formulario-add {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+#add-title,
+#add-description,
+#add-price,
+#add-code,
+#add-stock,
+#add-category {
+  height: 2.5rem;
+  margin: 10px;
+  border-style: solid;
+  border-color: #000;
+  border-radius: 10px;
+}
+#button-add {
+  background-color: black;
+  color: aliceblue;
+}
+
+.products-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.home {
+  background-color: cornflowerblue;
+}
+.delete-button {
+  background-color: red;
+  width: 75%;
+}

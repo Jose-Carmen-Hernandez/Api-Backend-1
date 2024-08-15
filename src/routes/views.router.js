@@ -47,7 +47,7 @@ router.get("/products", async (req, res) => {
 // GET para mostrar detalles de un producto:
 router.get("/products/:pid", async (req, res) => {
   const { pid } = req.params;
-  const cid = "66b914f27e23c992fd2f089c"; // se requierepara el boton añadir al carrito
+  const cid = "66b914f27e23c992fd2f089c"; // se requiere para el boton añadir al carrito
   try {
     const productFinded = await productModel.findById(pid).lean();
 
@@ -66,7 +66,7 @@ router.get("/products/:pid", async (req, res) => {
 //visualizar un carrito por id:
 router.get("/carts/:cid", async (req, res) => {
   const { cid } = req.params;
-  console.log(cid);
+  console.log(`ID del carrito: ${cid}`);
 
   try {
     const cart = await cartModel
@@ -103,14 +103,5 @@ router.get("/carts", async (req, res) => {
   res.render("carts", { carts });
 });
 
-router.get("/realtimeproducts", async (req, res) => {
-  const list = await productList.getAllProducts();
-
-  res.render("realTimeProducts", { list });
-});
-
-router.get("/home", (req, res) => {
-  res.render("home");
-});
 
 export default router;

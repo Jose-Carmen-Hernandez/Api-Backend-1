@@ -20,6 +20,8 @@ router.post("/", async (req, res) => {
 router.post("/:cid/products/:pid", async (req, res) => {
   try {
     const { cid, pid } = req.params;
+    const { quantity } = req.body;//se captura la cantidad seleccionada por el usuario
+    const quantityAdd = Number(quantity);//convierte la cantidad en un  numero
 
     //encontrar el carrito por id:
     const cartFinded = await cartModel.findById(cid);
@@ -33,9 +35,9 @@ router.post("/:cid/products/:pid", async (req, res) => {
 
     //actualizar cantidad de producto:
     if (indexProd !== -1) {
-      cartFinded.products[indexProd].quantity += 1;
+      cartFinded.products[indexProd].quantity += quantityAdd;//se ctualiza la cantidad 
     } else {
-      cartFinded.products.push({ product: pid, quantity: 1 });
+      cartFinded.products.push({ product: pid, quantity: quantityAdd });
     }
     //actualizar carrito y y poblar (populate) los detalles del producto:
     const updatedCart = await cartModel
