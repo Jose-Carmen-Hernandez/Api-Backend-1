@@ -1,10 +1,6 @@
 import express from "express";
 import { __dirname } from "./utils.js";
-import homeRoute from "./routes/views.router.js";
-import realTimeProducts from "./routes/views.router.js";
 import handlebars from "express-handlebars";
-import { Server } from "socket.io";
-import ProductManager from "./class/productManager.js";
 import productsRoute from "./routes/products.router.js";
 import cartsRoute from "./routes/carts.router.js";
 import viewsRoute from "./routes/views.router.js";
@@ -15,7 +11,6 @@ import { productModel } from "./data/models/Product.model.js";
 //configuracion de variables de entorno:
 dotenv.config();
 
-//const productManager = new ProductManager(__dirname + "/data/products.json");
 
 const app = express();
 const PORT = 8080;

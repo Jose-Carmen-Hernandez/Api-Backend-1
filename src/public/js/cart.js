@@ -1,4 +1,4 @@
-const goToCart = () => {
+/* const goToCart = () => {
   window.location = "/carts/66b914f27e23c992fd2f089c";
 };
 
@@ -47,3 +47,4 @@ const delProdToCarts = async (idProduct) => {
     window.location.reload();
   }
 };
+ */

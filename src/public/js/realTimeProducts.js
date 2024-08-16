@@ -1,4 +1,4 @@
-const socket = io();
+/* const socket = io();
 
 const containerProduct = document.querySelector("#container-products");
 
@@ -40,3 +40,4 @@ socket.on("realtime", (data) => {
     containerProduct.appendChild(divCard);
   });
 });
+ */

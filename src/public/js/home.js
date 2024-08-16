@@ -1,4 +1,4 @@
-const socket = io();
+/* const socket = io();
 
 const contenedorProductos = document.querySelector(".products-container");
 
@@ -21,3 +21,4 @@ socket.on("home", (data) => {
     contenedorProductos.appendChild(div);
   });
 });
+ */
